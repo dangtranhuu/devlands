@@ -1,0 +1,150 @@
+
+
+.search-container {
+    z-index: 1000;
+    max-width: 600px;
+    margin: 20px auto;
+    padding-left: 20px;
+}
+
+.search-container form {
+    display: flex;
+    align-items: center;
+}
+
+.search-container form i{
+    font-size: 30px;
+    color: #009639;
+    padding-left: 15px;
+    z-index: 2;
+    position: relative;
+}
+
+.search-inp input[type="text"] {
+    z-index: 1;
+    position: absolute;
+    margin: 0 auto;
+    display: block;
+    width: 85%;
+    /* width: calc(100% - 50px); 20px [ left & Right ] padding + 4px border [ left & Right ]  */
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    padding: 10px;
+    padding-left: 50px;
+    border: 2px solid #00a778;
+    font-family: Helvetica, arial, sans-serif;
+}
+
+#myModal .btn-default{
+    background-color: #14ba54;
+}
+
+.noi_bat {
+    margin-bottom: 30px;
+}
+
+.row {
+    width: 100%;
+}
+
+#content {
+    margin-top: 50px;
+}
+
+.row .left{
+    height: 100%;
+}
+
+#content .row .left {
+    border-right: solid 1.5px #191b1a;
+    height: 1600px;
+}
+
+.wrap p{
+font-size: 17px;
+}
+.slide-bar {
+    position: fixed;
+    height: 100%;
+}
+
+.slide-bar a span {
+    margin-bottom: 200px;
+}
+
+.left {
+    padding: 30px 30px 0px 50px;
+}
+
+.left a {
+    font-size: 16px;
+    font-weight: 200;
+    color: black;
+    margin-bottom: 30px;
+}
+
+.left a:hover {
+    text-decoration: none;
+    color: rgb(6, 138, 50);
+    font-weight: 150;
+}
+
+.right {
+    padding: 0px 40px 0px 90px;
+}
+
+.slide-bar ul>li{
+    margin-bottom: 20px;
+    list-style-type: none;
+    
+}
+
+#about .wrap{
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+#about .wrap h2{
+    margin-left: 0px;
+    margin-bottom: 30px;
+}
+
+
+
+.footer {
+    z-index: 1;
+}
+
+
+/* Mobile */
+@media (max-width: 46.1875em) {
+    .left {
+        display: none;
+    }
+
+    .right {
+        padding: 0px 40px 0px 50px;
+    }
+
+    footer{
+        display: block;
+    }
+
+    #content {
+        margin-bottom: -50px;
+    }
+}
+
+/* PC */
+@media (min-width: 64em){
+    footer{
+        display: none;
+    }
+
+    #about .wrap{
+        margin-right: 70px;
+    }
+
+    
+}

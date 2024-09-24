@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/img/ico/icon.png" type="image/x-icon">
+  <title>DaviTek</title>
+
+  <!-- icon -->
+  <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <!-- my css -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="./assets/css/responsive.css" />
+
+  <!-- mode -->
+  <script src="js/mode.js"></script>
+  <link rel="stylesheet" href="assets/css/mode.css">
+
+  <!-- toast -->
+  <script src="toast/main.js"></script>
+  <link rel="stylesheet" href="toast/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+</head>
+
+<body>
+  <!-- Button trigger modal -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Launch demo modal
+    </button> -->
+
+
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Tìm kiếm</h4>
+        </div>
+        <div class="modal-body">
+          <div class="search-container">
+            <form class="search-inp" action="">
+              <i class='bx bx-search-alt'></i>
+              <input type="text" placeholder="Lập trình Java..." name="search">
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <div class="tablet text-heading">
+    <div class="content-tablet">
+      <h1>Giao diện chỉ hỗ trợ PC và Mobile</h1>
+      <h2>Thành thật xin lỗi vì sự bất tiện này</h2>
+    </div>
+  </div>
+  <div id="main">
+    <div id="header">
+      <ul class="nav-pc" id="nav">
+        <li><a id="heading-logo" style="font-size: 20px;" href="#main">Davi <span>Tek</span></a>
+        </li>
+        <li><a href="pages/about.html">Giới thiệu</a></li>
+        <li>
+          <a>Khóa học
+            <i class="nav-arrow-down ti-angle-down"></i>
+          </a>
+          <ul class="subnav">
+            <li><a href="pages/course-list.html">Tất cả</a></li>
+            <li><a href="pages/course-list.html">Lập trình cơ bản</a></li>
+            <li><a href="pages/course-list.html">Lập trình nâng cao</a></li>
+            <li><a href="pages/course-list.html">Lập trình website</a></li>
+            <li><a href="pages/course-list.html">Lập trình nhúng</a></li>
+            <li><a href="pages/course-list.html">Lập trình mobile</a></li>
+            <li><a href="pages/course-list.html">Lập trình game</a></li>
+          </ul>
+        </li>
+        <li><a href="pages/contact.html">Liên hệ</a></li>
+        <li><a href="pages/contribute.html">Góp ý</a></li>
+        <li><a href="pages/qna.html">Hỏi đáp</a></li>
+        <li><a href="pages/login.html">Đăng nhập</a></li>
+        <li><a href="pages/register.html">Đăng ký</a></li>
+        <!-- <li>
+                        <a href="#"
+                            >Hi, FrogDev
+                            <i class="nav-arrow-down ti-angle-down"></i>
+                        </a>
+                        <ul class="subnav">
+                            <li><a href="#">Cập nhật thông tin</a></li>
+                            <li><a href="#">Đổi mật khẩu</a></li>
+                            <li><a href="#">Quên mật khẩu</a></li>
+                            <li><a href="#">Quên mật khẩu</a></li>
+                            <li><a href="#">Lịch sử thi</a></li>
+                            <li><a href="#">Đăng xuất</a></li>
+                        </ul>
+                    </li> 
+                -->
+      </ul>
+
+      <div style="margin-right: 0px;" class="search-btn mode">
+        <i onclick="changesIcon(this)" class="bx bx-sun bx-moon sun-moon"></i>
+      </div>
+      <!-- search -->
+      <div class="search-btn" data-toggle="modal" data-target="#myModal" id="search">
+        <i class="search-icon ti-search"> </i>
+      </div>
+
+
+      <div id="mobile-menu" class="mobile-menu-btn">
+        <!-- <i id="menu-i" class="menu-icon ti-menu"></i> -->
+        <button id="menu-i" class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+      <div class="mobile-menu-btn mode">
+        <!-- <i class="search-icon ti-search" id="search-mobile"> </i> -->
+        <i onclick="changesIcon(this)" class="bx bx-sun bx-moon sun-moon"></i>
+      </div>
+
+      <!-- .nav -->
+    </div>
+
+    <div id="menu-mobile">
+      <ul class="nav">
+        <li><a href=""></a></li>
+        <li><a href="pages/about.html">Giới thiệu</a></li>
+        <li>
+          <a>Khóa học
+            <i class="nav-arrow-down ti-angle-down"></i>
+          </a>
+          <ul class="subnav">
+            <li><a href="pages/course-list.html">Tất cả</a></li>
+            <li><a href="pages/course-list.html">Lập trình cơ bản</a></li>
+            <li><a href="pages/course-list.html">Lập trình nâng cao</a></li>
+            <li><a href="pages/course-list.html">Lập trình website</a></li>
+            <li><a href="pages/course-list.html">Lập trình nhúng</a></li>
+            <li><a href="pages/course-list.html">Lập trình mobile</a></li>
+            <li><a href="pages/course-list.html">Lập trình game</a></li>
+          </ul>
+        </li>
+        <li><a href="pages/contact.html">Liên hệ</a></li>
+        <li><a href="pages/contribute.html">Góp ý</a></li>
+        <li><a href="pages/qna.html">Hỏi đáp</a></li>
+        <li><a href="pages/login.html">Đăng nhập</a></li>
+        <li><a href="pages/register.html">Đăng ký</a></li>
+      </ul>
+    </div>
+
+
+    <div id="slider">
+      <div class="left">
+        <div class="text-content">
+          <!-- <h1 class="text-heading">
+            <span class="text-heading welcome">Chào mừng đến với</span> <br>
+            <span id="heading-logo" class="heading-logo" style="color: #15825a;">DaviTek</span>
+          </h1> -->
+          <span class="text-heading welcome">Chào mừng đến với</span> <br>
+          <span id="heading-logo" class="heading-logo" style="color: #15825a;">DaviTek</span>
+          <div class="text-description">
+            <p>Một diễn đàn học tập dành cho developer</p>
+          </div>
+          <!-- <button onclick="showErrorToast();" class="button-88" role="button">Bắt đầu
+                      nào</button> -->
+
+          <button onclick="showErrorToast();" class="cssbuttons-io-button"> Bắt đầu nào
+            <div class="icon">
+              <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                  fill="currentColor"></path>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="right">
+        <img src="assets/img/facion/frog-techs.gif">
+      </div>
+    </div>
+
+    <hr class="hr-feeds">
+    <div class="noi_bat">
+      <div class="one">
+        <div class="left">
+          <i class='bx bxl-spring-boot'></i>
+        </div>
+        <div class="right">
+          <div class="tieu_de">SPRING BOOT</div>
+          <p>Hiểu biết về Restfull Api bằng ngôn ngữ Java</p>
+        </div>
+      </div>
+      <div class="two">
+        <div class="left">
+          <i class='bx bxl-flutter'></i>
+        </div>
+        <div class="right">
+          <div class="tieu_de">FLUTTER</div>
+          <p>xây dựng được mobile-app đơn giản với ngôn ngữ Dart</p>
+        </div>
+      </div>
+      <div class="three">
+        <div class="left">
+          <i class='bx bxl-unity'></i>
+        </div>
+        <div class="right">
+          <div class="tieu_de">UNITY</div>
+          <p>xây dựng game cơ bản với Unity</p>
+        </div>
+
+      </div>
+      <div class="four">
+        <div class="left">
+          <i class='bx bxs-bug'></i>
+        </div>
+        <div class="right">
+          <div class="tieu_de">BUGS</div>
+          <p>có kỹ năng gỡ lỗi, debug với nhiều tool khác nhau</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="banner" class="banner row">
+      <div class="col-sm-8 left">
+        <div class="content">
+          <h2>Davi <span style="color: #15825a;">Tek</span> sẽ giúp được gì cho bạn</h2>
+          <div class="block">
+            <i class='bx bx-meteor'></i>
+            <p>Giúp bạn học lập trình thú vị hơn qua các câu trắc nghiệm thay vì những bài học khô khan trên
+              lớp</p>
+          </div>
+          <div class="block">
+            <i class='bx bx-layer-plus'></i>
+            <p>Giúp bạn nhớ lâu hơn các cú pháp trong lập trình, từ đó có thể ứng dụng vào các dự án thực tế
+            </p>
+          </div>
+          <div class="block">
+            <i class='bx bx-rocket'></i>
+            <p>Hiểu hơn các công nghệ mới, phổ biến trên thế giới. Giúp bạn có thể học hỏi nhiều kiến thức
+              chuyên môn</p>
+          </div>
+          <div class="block">
+            <!-- HTML !-->
+            <button onclick="window.location.href='pages/login.html';" class="button-30" role="button">Bắt
+              đầu ngay</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 right">
+        <div class="content">
+          <img src="images/banner-img-1.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div id="content">
+      <hr class="hr-fire">
+      <h2 id="title-tong-quan" style="margin-left: 20px;">Cùng tìm hiểu về Davi <span style="color: #15825a;">Tek</span>
+      </h2>
+
+      <div class="noi_bat tong-quan">
+        <div class="one">
+          <div class="left">
+            <i style="color: rgb(27, 135, 138);" class='bx bx-code-alt'></i>
+          </div>
+          <div class="right">
+            <div class="tieu_de">CODE</div>
+            <p>Cung cấp nhiều kiến thức thú vị, thực tế liên quan tới lập trình</p>
+          </div>
+        </div>
+        <div class="two">
+          <div class="left">
+            <i style="color: rgb(255, 61, 61);" class='bx bx-palette'></i>
+          </div>
+          <div class="right">
+            <div class="tieu_de">GRAPHIC</div>
+            <p>Giao diện tiện lợi dễ sử dụng, tương thích nhiều nền tảng</p>
+          </div>
+        </div>
+        <div class="three">
+          <div class="left">
+            <i style="color: rgb(185, 152, 22);" class='bx bxs-brightness-half'></i>
+          </div>
+          <div class="right">
+            <div class="tieu_de">DARK MODE</div>
+            <p>Cung cấp chế độ dark mode giúp người học tránh cường độ ánh sáng cao</p>
+          </div>
+
+        </div>
+        <div class="four">
+          <div class="left">
+            <i style="color: rgb(197, 43, 153);" class='ti-infinite'></i>
+          </div>
+          <div class="right">
+            <div class="tieu_de">PERMANENTLY</div>
+            <p>Cập nhật các kiến thức mới liên tục</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Site footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>Giới thiệu</h6>
+            <p class="text-justify">DaviTek<i> HỆ THỐNG TRẮC NGHIỆM LẬP TRÌNH MIỄN PHÍ 2023</i> là một
+              website hỗ trợ các bài tập cơ bản, các phần lí thuyết và bài tập trắc nghiệm của các
+              ngôn
+              ngữ lập trình, công nghệ phổ biến như C, C++, Java, HTML, CSS, Bootstrap,
+              JavaScript, PHP, Android, SQL và các thuật toán.</p>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Khóa học</h6>
+            <ul class="footer-links">
+              <li><a href="#">C</a></li>
+              <li><a href="#">UI Design</a></li>
+              <li><a href="#">PHP</a></li>
+              <li><a href="#">Java</a></li>
+              <li><a href="#">Android</a></li>
+              <li><a href="#">Embed</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Frog team</h6>
+            <ul class="footer-links">
+              <li><a href="#">Frog Guide</a></li>
+              <li><a href="#">Email</a></li>
+              <li><a href="#">TikTok</a></li>
+              <li><a href="#">YouTube</a></li>
+              <li><a href="#">Fanpage</a></li>
+
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+              <a href="#">Frog</a>.
+            </p>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a target="_blank" class="facebook" href="#"><i class="facebook-icon ti-facebook"></i></a></li>
+              <li><a target="_blank" class="twitter" href="#"><i class="twitter-icon ti-twitter"></i></a>
+              </li>
+              <li><a target="_blank" class="github" href="https://github.com/"><i class="github-icon ti-github"></i></a>
+              </li>
+              <li><a target="_blank" class="linkedin" href="#"><i class="linkedin-icon ti-linkedin"></i></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="js/mobile-menu.js"></script>
+  <script>
+    // var menuMobileRight = document.getElementById("menu-mobile");
+    // var header = document.getElementById("header");
+    // var mobileMenu = document.getElementById("mobile-menu");
+    // var icon = document.getElementById("menu-i");
+    // var headerHeight = header.clientHeight;
+
+    // function changesIconMenu() {
+    //     // icon.classList.toggle("ti-menu");
+    //     // icon.classList.toggle("ti-close");
+    //     icon.classList.toggle("is-active");
+    // }
+
+    // // mobile menu
+    // mobileMenu.onclick = function () {
+    //     changesIconMenu();
+    //     var isClosed = header.clientHeight === headerHeight;
+    //     var isOpen = menuMobileRight.getBoundingClientRect().left
+    //     //console.log(isOpen)
+    //     if (isOpen>200) {
+    //         menuMobileRight.style.right = "0";
+    //         //header.style.height = "auto";
+    //         // header.style.width = "70%";
+    //     } else {
+    //         menuMobileRight.style.right = "-100%";
+    //         //header.style.height = null;
+    //     }
+    //     //console.log(isOpen)
+    // };
+
+    // // auto close when clicked menu mobile
+    // var menuItems = document.querySelectorAll('#nav li a[href*="#"]');
+    // for (let i = 0; i < menuItems.length; i++) {
+    //     const menuItem = menuItems[i];
+    //     menuItem.onclick = function (event) {
+    //         var isParentMenu =
+    //             this.nextElementSibling &&
+    //             this.nextElementSibling.classList.contains("subnav");
+    //         if (isParentMenu) {
+    //             event.preventDefault();
+    //         } else {
+    //             header.style.height = null;
+    //         }
+    //     };
+    // }
+
+    //toast
+    function showSuccessToast() {
+      toast({
+        title: "Thành công!",
+        message: "Quá tuyệt vời Chào mừng bạn đến với DaviTek.",
+        type: "success",
+        duration: 5000
+      });
+    }
+
+    function showErrorToast() {
+      toast({
+        title: "Thất bại!",
+        message: "Vui lòng đăng nhập vào hệ thống để bắt đầu.",
+        type: "error",
+        duration: 5000
+      });
+    }
+  </script>
+</body>
+
+</html>
