@@ -1,0 +1,24 @@
+/* *{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+footer {
+  position: relative;
+  border-top: solid 1px #59595936;
+  justify-content: center;
+  display: flex;
+}
+
+footer p {
+  text-align: center;
+}
+
+
+
+/* PC */
+@media (min-width: 64em) {
+  footer {
+    z-index: 5;
+  }
+}

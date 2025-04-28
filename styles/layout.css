@@ -1,0 +1,43 @@
+.main {
+  display: flex;
+  /* height: 100vh; */
+  margin-top: 50px;
+}
+
+
+.svg-inline--fa {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+
+/* Định dạng container */
+.container {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+}
+
+/* PC */
+@media (min-width: 64em) {
+
+
+  /* Định dạng container */
+  .container {
+    margin-left: 130px;
+  }
+}
+
+/* Media query cho mobile và tablet */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .container {
+    padding-bottom: 80px;
+    /* Chừa khoảng trống để không bị che bởi menu */
+  }
+}

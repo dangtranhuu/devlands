@@ -1,0 +1,62 @@
+a {
+  text-decoration: none;
+  /* Xóa gạch chân cho thẻ <i> bên trong <a> */
+}
+
+i {
+  text-decoration: none;
+  /* Xóa gạch chân */
+  display: inline-block;
+  /* Đảm bảo nó hiển thị đúng như một block nhỏ */
+}
+
+.bx {
+  text-decoration: none;
+  /* Xóa gạch chân cho các icon của Boxicons */
+}
+
+
+.main {
+  min-height: calc(100vh - 100px);
+  /* Adjust 100px to match your footer's height */
+  display: flex;
+  flex-direction: column;
+}
+
+.menu .mode-mobile button {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #404040;
+  background-color: #f0f0f0cc;
+  border-radius: 50%;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.menu .mode-mobile ._icon_1plrx_24 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+._button_1plrx_1 ._new_1plrx_32 {
+  position: absolute;
+  top: 4px;
+  right: 1px;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #fa3e3e;
+  border-radius: 50%;
+}
+
+.container {
+  /* width: calc(100% - 116px); */
+}

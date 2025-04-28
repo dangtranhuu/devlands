@@ -1,0 +1,67 @@
+/* variables.css */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --hover-primary-color: #e74c3c;
+  --hover-secondary-color: #f1c40f;
+
+  --dark-background: #1f1f26ef;
+}
+
+/* Định dạng chung cho cả hai thành phần */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  display: block;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* PC */
+@media (min-width: 64em) {
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #00a77892;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(0, 155, 251);
+  }
+}
+
+/* Handle */
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: rgb(0, 155, 251);
+}
+
+/* Handle on hover */
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #00a77892;
+}
+
+
+
+/* HEADER */
