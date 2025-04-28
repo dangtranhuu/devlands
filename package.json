@@ -12,8 +12,10 @@
     "@codemirror/lang-cpp": "^6.0.2",
     "@codemirror/lang-javascript": "^6.2.3",
     "@codemirror/lang-python": "^6.2.0",
+    "@monaco-editor/react": "^4.7.0",
     "@uiw/codemirror-theme-github": "^4.23.11",
     "@uiw/react-codemirror": "^4.23.11",
+    "monaco-editor": "^0.52.2",
     "next": "14.2.28",
     "react": "^18",
     "react-dom": "^18"

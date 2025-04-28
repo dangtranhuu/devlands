@@ -1,10 +1,8 @@
 'use client';
 
-import CodeMirror from '@uiw/react-codemirror';
-import { javascript } from '@codemirror/lang-javascript';
-import { python } from '@codemirror/lang-python';
-import { cpp } from '@codemirror/lang-cpp';
-import { githubLight } from '@uiw/codemirror-theme-github';
+import Editor, { useMonaco } from "@monaco-editor/react";
+import { useEffect } from "react";
+import { MONACO_THEMES } from "@/components/theme";
 
 type Language = 'javascript' | 'python' | 'cpp';
 
@@ -12,26 +10,34 @@ interface CodeEditorProps {
   value: string;
   onChange: (value: string) => void;
   language: Language;
+  isDarkMode: boolean;
 }
 
-export function CodeEditor({ value, onChange, language }: CodeEditorProps) {
-  const extensions = {
-    javascript: javascript(),
-    python: python(),
-    cpp: cpp(),
-  };
+export function CodeEditor({ value, onChange, language, isDarkMode }: CodeEditorProps) {
+
+  const monaco = useMonaco();
+
+  useEffect(() => {
+    if (monaco) {
+      Object.entries(MONACO_THEMES).forEach(([name, theme]) => {
+        monaco.editor.defineTheme(name, theme as any); // register tất cả themes
+      });
+    }
+  }, [monaco]);
 
   return (
-    <CodeMirror
+    <Editor
+      height="100%"
+      theme={isDarkMode ? "dracula" : "light"} // Đổi ở đây theo dark/light
+      language={language}
       value={value}
-      extensions={[extensions[language]]}
-      theme={githubLight}
-      onChange={(val) => onChange(val)}
-      basicSetup={{ lineNumbers: true }}
-      style={{
+      onChange={(val: any) => onChange(val || "")}
+      options={{
+        fontSize: 14,
         fontFamily: 'Fira Code, monospace',
-        fontSize: '15px',
-        height: '100%',
+        minimap: { enabled: false },
+        wordWrap: "on",
+        scrollBeyondLastLine: false,
       }}
     />
   );

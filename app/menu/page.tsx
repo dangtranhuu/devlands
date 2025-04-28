@@ -49,7 +49,11 @@ export default function Menu() {
     setIsDarkMode(newMode);
     document.body.classList.toggle('dark-mode');
     localStorage.setItem('modeByThean', newMode ? 'dark' : 'light');
+
+    // Phát ra 1 sự kiện tùy chỉnh
+    window.dispatchEvent(new Event('mode-changed'));
   };
+
 
   return (
     <div>
