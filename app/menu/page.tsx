@@ -1,10 +1,8 @@
 'use client'; // Thêm dòng này để báo rằng đây là một Client Component
 
 import Link from 'next/link';
-import Script from 'next/script'; // Nhập thành phần Script từ next/script
 import { useState, useEffect } from 'react';
 import '@/styles/menu.css';
-import { MdCastle } from "oh-vue-icons/icons";
 
 export default function Menu() {
   const [isDarkMode, setIsDarkMode] = useState(false);

@@ -18,7 +18,7 @@ export default function Header() {
         <div className="header" id="header">
           <div className="logo">
             <img src="/img/ico/frog-bc.png" alt="DaviLands" />
-            <h1 className=""><a className="_subTitle_vdbp4_58 d-lg-none" href="/"> <Link href={"/"}>DaviLands</Link> </a></h1>
+            <h1 className=""><a className="_subTitle_vdbp4_58 d-lg-none" href="/">DaviLands </a></h1>
           </div>
 
 

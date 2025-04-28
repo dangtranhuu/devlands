@@ -1,14 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { CodeEditor } from '../../components/CodeEditor';
+import { CodeEditor } from '@/components/CodeEditor';
+import "@/styles/code.css"
 
 type Language = 'javascript' | 'python' | 'cpp';
 
-export default function Code() {
-  const [code, setCode] = useState<string>("console.log('Hello World');");
+export default function CodePage() {
+  const [code, setCode] = useState<string>('console.log("Hello World");');
+  const [output, setOutput] = useState<string>('Run your code to see the output here...');
   const [language, setLanguage] = useState<Language>('javascript');
-  const [output, setOutput] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
   const languageIds: Record<Language, number> = {
@@ -33,41 +34,51 @@ export default function Code() {
       setOutput(data.output || 'No output');
     } catch (error) {
       console.error(error);
-      setOutput('Something went wrong.');
+      setOutput('Error executing code.');
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6 space-y-6">
-      <h1 className="text-3xl font-bold">Live Code Runner</h1>
+    <div className="main-container">
+      {/* Editor Area */}
+      <div className="editor-container">
+        {/* Toolbar */}
+        <div className="toolbar">
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value as Language)}
+            className="language-select"
+          >
+            <option value="javascript">JavaScript</option>
+            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+          </select>
 
-      <div className="flex space-x-4">
-        <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value as Language)}
-          className="p-2 bg-gray-700 rounded"
-        >
-          <option value="javascript">JavaScript</option>
-          <option value="python">Python</option>
-          <option value="cpp">C++</option>
-        </select>
+          <button
+            onClick={handleRunCode}
+            disabled={loading}
+            className="run-button"
+          >
+            {loading ? 'Running...' : 'Run'}
+          </button>
+        </div>
 
-        <button
-          onClick={handleRunCode}
-          disabled={loading}
-          className="px-6 py-2 bg-blue-600 rounded hover:bg-blue-700"
-        >
-          {loading ? 'Running...' : 'Run'}
-        </button>
+        {/* Code Editor */}
+        <div className="code-editor">
+          <CodeEditor value={code} onChange={setCode} language={language} />
+        </div>
       </div>
 
-      <CodeEditor value={code} onChange={setCode} language={language} />
-
-      <div className="bg-black p-4 rounded min-h-[100px]">
-        <h2 className="text-lg font-semibold mb-2">Output:</h2>
-        <pre>{output}</pre>
+      {/* Right - Output */}
+      <div className="output-container">
+        <div className="output-title">
+          <span>Output</span>
+        </div>
+        <div className="output-console">
+          {output}
+        </div>
       </div>
     </div>
   );
