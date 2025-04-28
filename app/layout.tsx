@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google';
 import Header from '@/app/header/page';
 import Menu from '@/app/menu/page';
 import Footer from '@/app/footer/page';
-import Login from '@/app/login/page';
-import Link from 'next/link';
-import Script from 'next/script'; // Nhập thành phần Script từ next/script
-const inter = Inter({ subsets: ['latin'] })
 
 
 import '@/styles/globals.css';
