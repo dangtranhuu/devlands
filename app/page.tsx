@@ -2,6 +2,7 @@
 
 import MenuBar from './components/MenuBar';
 import Dock from './components/Dock';
+import Spotlight from './components/Spotlight';
 import { useWindowStore } from '@/store/windowStore';
 import FinderWindow from './components/windows/FinderWindow';
 import TerminalWindow from './components/windows/TerminalWindow';
@@ -25,6 +26,7 @@ export default function Home() {
       })}
 
       <Dock />
+      <Spotlight />
     </main>
   );
 }
