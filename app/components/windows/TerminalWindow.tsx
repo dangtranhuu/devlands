@@ -1,6 +1,7 @@
 'use client';
 import Draggable from 'react-draggable';
 import { useWindowStore } from '@/store/windowStore';
+import WindowControls from '@/app/components/WindowControls';
 
 export default function TerminalWindow({ id, zIndex }: { id: string; zIndex: number }) {
   const closeWindow = useWindowStore((s) => s.closeWindow);
@@ -12,12 +13,7 @@ export default function TerminalWindow({ id, zIndex }: { id: string; zIndex: num
         <div className="bg-black text-green-400 rounded-md border shadow-lg font-mono">
           <div className="title-bar flex items-center justify-between bg-gray-800 px-3 py-1 border-b border-gray-700 cursor-move">
             <div className="flex space-x-2">
-              <div
-                className="w-3 h-3 bg-red-500 rounded-full cursor-pointer"
-                onClick={() => closeWindow(id)}
-              ></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <WindowControls onClose={() => closeWindow(id)} />
             </div>
             <span className="text-sm text-white">Terminal</span>
             <div />

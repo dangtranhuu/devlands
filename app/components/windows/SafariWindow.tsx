@@ -1,5 +1,7 @@
 'use client';
 
+import WindowControls from '@/app/components/WindowControls';
+
 export default function SafariWindow() {
   return (
     <div className="absolute top-32 left-40 w-[800px] h-[500px] bg-white rounded-md border shadow-lg z-10 flex flex-col">
