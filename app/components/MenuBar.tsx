@@ -6,17 +6,25 @@ import { useSpotlightStore } from '@/store/spotlightStore';
 import { FaWifi, FaSearch, FaApple } from 'react-icons/fa';
 import { MdBatteryChargingFull, MdBatteryFull } from 'react-icons/md';
 import { IoIosOptions } from 'react-icons/io';
+import BatteryManager from '@/types'
+
+
+interface NavigatorWithBattery extends Navigator {
+  getBattery?: () => Promise<BatteryManager>;
+}
 
 export default function MenuBar() {
   const [time, setTime] = useState('');
-  const [batteryPercent] = useState(100);
-  const [charging] = useState(true); // giả lập đang sạc
+  const [batteryPercent, setBatteryPercent] = useState(100);
+  const [charging, setCharging] = useState(false);
   const [showControl, setShowControl] = useState(false);
 
   const { open } = useSpotlightStore();
   const focusedId = useWindowStore((s) => s.focusedId);
   const windows = useWindowStore((s) => s.windows);
   const focusedApp = windows.find((w) => w.id === focusedId)?.app ?? 'finder';
+
+
 
   useEffect(() => {
     const update = () => {
@@ -34,6 +42,28 @@ export default function MenuBar() {
     const interval = setInterval(update, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const nav = navigator as NavigatorWithBattery;
+
+    nav.getBattery?.().then((battery) => {
+      const updateBattery = () => {
+        setBatteryPercent(Math.round(battery.level * 100));
+        setCharging(battery.charging);
+      };
+
+      updateBattery();
+      battery.addEventListener('levelchange', updateBattery);
+      battery.addEventListener('chargingchange', updateBattery);
+
+      return () => {
+        battery.removeEventListener('levelchange', updateBattery);
+        battery.removeEventListener('chargingchange', updateBattery);
+      };
+    });
+  }, []);
+
+
 
   const getMenuItems = () => {
     switch (focusedApp) {
