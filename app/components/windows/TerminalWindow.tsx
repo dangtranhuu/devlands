@@ -11,7 +11,7 @@ export default function TerminalWindow({ id, zIndex }: { id: string; zIndex: num
     <Draggable handle=".title-bar" onStart={() => focusWindow(id)}>
       <div className="absolute top-40 left-60 w-[600px]" style={{ zIndex }}>
         <div className="bg-black text-green-400 rounded-md border shadow-lg font-mono">
-          <div className="title-bar flex items-center justify-between bg-gray-800 px-3 py-1 border-b border-gray-700 cursor-move">
+          <div className="title-bar flex items-center justify-between bg-gray-800 px-3 py-1 border-b border-gray-700">
             <div className="flex space-x-2">
               <WindowControls onClose={() => closeWindow(id)} />
             </div>

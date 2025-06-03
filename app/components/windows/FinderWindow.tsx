@@ -11,7 +11,7 @@ export default function FinderWindow({ id, zIndex }: { id: string; zIndex: numbe
     <Draggable handle=".title-bar" onStart={() => focusWindow(id)}>
       <div className="absolute top-20 left-20 w-[600px]" style={{ zIndex }}>
         <div className="bg-white rounded-md border shadow-lg">
-          <div className="title-bar flex items-center justify-between bg-gray-100 px-3 py-1 border-b cursor-move">
+          <div className="title-bar flex items-center justify-between bg-gray-100 px-3 py-1 border-b">
             <WindowControls onClose={() => closeWindow(id)} />
             <span className="text-sm">Finder</span>
             <div />
