@@ -24,7 +24,7 @@ export default function TerminalWindow({ id, zIndex }: { id: string; zIndex: num
           </div>
           <div className="p-4 text-sm">
             <p>Last login: Mon Jun 2 11:00:00 on ttys000</p>
-            <p>$ echo "Hello macOS UI"</p>
+            <p>$ echo &ldquo;Hello macOS UI&ldquo;</p>
             <p>Hello macOS UI</p>
           </div>
         </div>
