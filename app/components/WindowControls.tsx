@@ -1,18 +1,48 @@
 'use client';
 
+import { useState } from 'react';
+import { MacIcons } from '@/app/components/icon/mac';
+
 interface Props {
   onClose?: () => void;
+  onMinimize?: () => void;
+  onMaximize?: () => void;
 }
 
-export default function WindowControls({ onClose }: Props) {
+export default function WindowControls({ onClose, onMinimize, onMaximize }: Props) {
+  const [hovered, setHovered] = useState<'close' | 'minimize' | 'maximize' | null>(null);
+
   return (
     <div className="flex space-x-2">
-      <div
-        className="w-3 h-3 bg-red-500 rounded-full cursor-pointer hover:brightness-110 transition"
+      {/* Close */}
+      <button
         onClick={onClose}
-      />
-      <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-      <div className="w-3 h-3 bg-green-500 rounded-full" />
+        onMouseEnter={() => setHovered('close')}
+        onMouseLeave={() => setHovered(null)}
+        className="w-3.5 h-3.5"
+      >
+        {hovered === 'close' ? <MacIcons.closeHover /> : <MacIcons.closeNormal />}
+      </button>
+
+      {/* Minimize */}
+      <button
+        onClick={onMinimize}
+        onMouseEnter={() => setHovered('minimize')}
+        onMouseLeave={() => setHovered(null)}
+        className="w-3.5 h-3.5"
+      >
+        {hovered === 'minimize' ? <MacIcons.minimizeHover /> : <MacIcons.minimizeNormal />}
+      </button>
+
+      {/* Maximize */}
+      <button
+        onClick={onMaximize}
+        onMouseEnter={() => setHovered('maximize')}
+        onMouseLeave={() => setHovered(null)}
+        className="w-3.5 h-3.5"
+      >
+        {hovered === 'maximize' ? <MacIcons.maximizeHover /> : <MacIcons.maximizeNormal />}
+      </button>
     </div>
   );
 }
