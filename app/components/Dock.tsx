@@ -8,6 +8,10 @@ const apps = [
   { id: 'finder', name: 'Finder', icon: '/icons/finder.png' },
   { id: 'terminal', name: 'Terminal', icon: '/icons/terminal.png' },
   { id: 'safari', name: 'Safari', icon: '/icons/safari.png' },
+  { id: 'profile', name: 'Profile', icon: '/icons/profile.png' },
+  { id: 'camera', name: 'Camera', icon: '/icons/camera.png' },
+  { id: 'vscode', name: 'VS Code', icon: '/icons/vscode.png' },
+  { id: 'github-desktop', name: 'Github Desktop', icon: '/icons/github-desktop.png' },
 ];
 
 export default function Dock() {
@@ -20,7 +24,7 @@ export default function Dock() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const dockRef = useRef<HTMLDivElement>(null);
 
-  const iconSize = 64;
+  const iconSize = 72;
 
   const isOpen = (appId: string) => windows.some((w) => w.app === appId);
 
@@ -60,56 +64,64 @@ export default function Dock() {
       ref={dockRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="fixed bottom-6 left-1/2 transform -translate-x-1/2 flex px-4 py-2 bg-white/20 backdrop-blur-md rounded-2xl shadow-2xl z-50"
+      className="fixed bottom-6 left-1/2 transform -translate-x-1/2 flex px-2 py-1 bg-white/20 backdrop-blur-md rounded-xl shadow-md z-50"
     >
-      {apps.map((app, index) => (
-        <div
-          key={app.id}
-          className="relative group flex flex-col items-center"
-          style={{
-            width: iconSize,
-            transition: 'transform 0.15s ease',
-            transform: getTransform(index),
-          }}
-        >
-          {/* Label */}
+      {apps.map((app, index) => {
+        const isFocused = focusedApp === app.id;
+        const isAppOpen = isOpen(app.id);
+
+        return (
           <div
-            className={clsx(
-              'absolute -top-7 px-1.5 py-0.5 text-xs text-black bg-white/80 rounded shadow-sm',
-              'flex items-center justify-center whitespace-nowrap',
-              index === hoveredIndex ? 'opacity-100' : 'opacity-0 pointer-events-none',
-              'transition-opacity duration-150'
-            )}
+            key={app.id}
+            className="relative flex flex-col items-center"
+            style={{
+              width: iconSize,
+              transition: 'transform 0.15s ease',
+              transform: getTransform(index),
+            }}
           >
-            {app.name}
-            {/* Tam giác dưới label */}
-            <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-white/80 rotate-45 z-[-1]"></div>
-          </div>
-
-
-          <button
-            onClick={() => openWindow(app.id as any)}
-            className="transition-transform duration-150"
-          >
-            <img
-              src={app.icon}
-              alt={app.name}
-              className="w-12 h-12 object-contain pointer-events-none select-none"
-              draggable={false}
-            />
-          </button>
-
-          {/* Indicator */}
-          {isOpen(app.id) && (
-            <span
+            {/* Label */}
+            <div
               className={clsx(
-                'w-2 h-2 rounded-full mt-1',
-                focusedApp === app.id ? 'bg-white' : 'bg-gray-300'
+                'absolute -top-7 px-1.5 py-0.5 text-xs text-black bg-white/80 rounded shadow-sm',
+                'flex items-center justify-center whitespace-nowrap',
+                index === hoveredIndex ? 'opacity-100' : 'opacity-0 pointer-events-none',
+                'transition-opacity duration-150'
               )}
-            ></span>
-          )}
-        </div>
-      ))}
+            >
+              {app.name}
+              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-white/80 rotate-45 z-[-1]" />
+            </div>
+
+            {/* Icon */}
+            <div className="relative">
+              <button
+                onClick={() => openWindow(app.id as any)}
+                className="transition-transform duration-150"
+              >
+                <img
+                  src={app.icon}
+                  alt={app.name}
+                  className="w-[64px] h-[64px] object-contain pointer-events-none select-none"
+                  draggable={false}
+                />
+              </button>
+
+              {/* Dot: small, subtle, positioned just below icon */}
+              <span
+                className={clsx(
+                  'absolute top-full left-1/2 -translate-x-1/2 mt-[2px] w-[2px] h-[2px] rounded-full transition-opacity duration-200',
+                  isAppOpen
+                    ? isFocused
+                      ? 'bg-white opacity-100'
+                      : 'bg-neutral-500 opacity-100'
+                    : 'opacity-0'
+                )}
+              ></span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
