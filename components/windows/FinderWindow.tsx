@@ -1,7 +1,7 @@
 'use client';
 import Draggable from 'react-draggable';
 import { useWindowStore } from '@/store/windowStore';
-import WindowControls from '@/app/components/WindowControls';
+import WindowControls from '@/components/WindowControls';
 
 export default function FinderWindow({ id, zIndex }: { id: string; zIndex: number }) {
   const closeWindow = useWindowStore((s) => s.closeWindow);
