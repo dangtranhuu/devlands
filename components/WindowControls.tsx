@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MacIcons } from '@/app/components/icon/mac';
+import { MacIcons } from '@/components/icon/mac';
 
 interface Props {
   onClose?: () => void;
