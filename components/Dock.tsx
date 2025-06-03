@@ -3,6 +3,7 @@
 import { useWindowStore } from '@/store/windowStore';
 import clsx from 'clsx';
 import { useRef, useState } from 'react';
+import type { WindowType } from '@/store/windowStore';
 
 const apps = [
   { id: 'finder', name: 'Finder', icon: '/icons/finder.png' },
@@ -59,11 +60,8 @@ export default function Dock() {
     return `translate(${translateX}px, 0)`;
   };
 
-  const openWindow = useWindowStore((s) => s.openWindow);
   const restoreWindow = useWindowStore((s) => s.restoreWindow);
-  const windows = useWindowStore((s) => s.windows);
-
-  const handleClick = (appId: string) => {
+  const handleClick = (appId: WindowType) => {
     const existing = windows.find((w) => w.app === appId);
     if (existing?.minimized) {
       restoreWindow(existing.id);

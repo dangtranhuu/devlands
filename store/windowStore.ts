@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type WindowType = 'finder' | 'terminal' | 'safari';
+export type WindowType = 'finder' | 'terminal' | 'safari' | 'profile' | 'camera' | 'vscode' | 'github-desktop';
 
 type Window = {
   id: string;
@@ -64,3 +64,4 @@ export const useWindowStore = create<State>((set) => ({
       ),
     })),
 }));
+
