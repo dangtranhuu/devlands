@@ -6,6 +6,11 @@ import WindowControls from '@/components/WindowControls';
 export default function FinderWindow({ id, zIndex }: { id: string; zIndex: number }) {
   const closeWindow = useWindowStore((s) => s.closeWindow);
   const focusWindow = useWindowStore((s) => s.focusWindow);
+  const windowData = useWindowStore((s) =>
+    s.windows.find((w) => w.id === id)
+  );
+
+  if (windowData?.minimized) return null;
 
   return (
     <Draggable handle=".title-bar" onStart={() => focusWindow(id)}>

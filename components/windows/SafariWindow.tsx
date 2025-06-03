@@ -4,6 +4,12 @@ import { useWindowStore } from '@/store/windowStore';
 import WindowControls from '@/components/WindowControls';
 
 export default function SafariWindow({ id, zIndex }: { id: string; zIndex: number }) {
+  const windowData = useWindowStore((s) =>
+    s.windows.find((w) => w.id === id)
+  );
+
+  if (windowData?.minimized) return null;
+
   const closeWindow = useWindowStore((s) => s.closeWindow);
   const focusWindow = useWindowStore((s) => s.focusWindow);
   return (

@@ -7,6 +7,7 @@ type Window = {
   app: WindowType;
   zIndex: number;
   isOpen: boolean;
+  minimized?: boolean;
 };
 
 type State = {
@@ -15,6 +16,9 @@ type State = {
   openWindow: (app: WindowType) => void;
   closeWindow: (id: string) => void;
   focusWindow: (id: string) => void;
+  minimizeWindow: (id: string) => void;
+  restoreWindow: (id: string) => void;
+
 };
 
 let zCounter = 100;
@@ -46,5 +50,17 @@ export const useWindowStore = create<State>((set) => ({
         w.id === id ? { ...w, zIndex: ++zCounter } : w
       ),
       focusedId: id,
+    })),
+  minimizeWindow: (id: string) =>
+    set((state) => ({
+      windows: state.windows.map((w) =>
+        w.id === id ? { ...w, minimized: true } : w
+      ),
+    })),
+  restoreWindow: (id: string) =>
+    set((state) => ({
+      windows: state.windows.map((w) =>
+        w.id === id ? { ...w, minimized: false } : w
+      ),
     })),
 }));

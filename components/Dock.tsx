@@ -59,6 +59,20 @@ export default function Dock() {
     return `translate(${translateX}px, 0)`;
   };
 
+  const openWindow = useWindowStore((s) => s.openWindow);
+  const restoreWindow = useWindowStore((s) => s.restoreWindow);
+  const windows = useWindowStore((s) => s.windows);
+
+  const handleClick = (appId: string) => {
+    const existing = windows.find((w) => w.app === appId);
+    if (existing?.minimized) {
+      restoreWindow(existing.id);
+    } else {
+      openWindow(appId);
+    }
+  };
+
+
   return (
     <div
       ref={dockRef}
