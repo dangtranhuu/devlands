@@ -80,7 +80,7 @@ export default function MenuBar() {
   return (
     <div className="fixed top-0 left-0 right-0 h-7 bg-white/20 backdrop-blur-md flex justify-between px-4 text-sm text-white z-50 font-light select-none">
       <div className="flex items-center space-x-4 h-full">
-        <FaApple className="invert w-4 h-4" />
+        <FaApple className="w-4 h-4" />
         <span className="font-semibold capitalize">{focusedApp}</span>
         {getMenuItems().map((item) => (
           <span
@@ -104,14 +104,14 @@ export default function MenuBar() {
         </div>
 
         {/* Wi-Fi */}
-        <FaWifi className="invert w-4 h-4" />
+        <FaWifi className="w-4 h-4" />
 
         {/* Spotlight */}
         <button
           onClick={() => open()}
           className="hover:bg-white/30 rounded px-1 py-0.5 transition-colors"
         >
-          <FaSearch className="invert w-4 h-4" />
+          <FaSearch className="w-4 h-4" />
         </button>
 
         {/* Control Center toggle */}
@@ -119,7 +119,7 @@ export default function MenuBar() {
           onClick={() => setShowControl((prev) => !prev)}
           className="hover:bg-white/30 rounded px-1 py-0.5 transition-colors"
         >
-          <IoIosOptions className="invert w-5 h-5" />
+          <IoIosOptions className="w-5 h-5" />
         </button>
 
         {/* Time */}
