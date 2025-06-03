@@ -1,10 +1,16 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useWindowStore } from '@/store/windowStore';
-import Image from 'next/image';
+import { useSpotlightStore } from '@/store/spotlightStore';
+import { FaWifi, FaSearch, FaApple } from 'react-icons/fa';
+import { CiBatteryFull } from 'react-icons/ci';
+import clsx from 'clsx';
 
 export default function MenuBar() {
   const [time, setTime] = useState('');
+  const [batteryPercent] = useState(87); // fake, bạn có thể lấy real nếu muốn
+  const { isOpen, open } = useSpotlightStore();
   const focusedId = useWindowStore((s) => s.focusedId);
   const windows = useWindowStore((s) => s.windows);
 
@@ -41,12 +47,10 @@ export default function MenuBar() {
     <div className="fixed top-0 left-0 right-0 h-7 bg-white/20 backdrop-blur-md flex justify-between px-4 text-sm text-white z-50 font-light select-none">
       <div className="flex items-center space-x-4 h-full">
         {/* Apple logo */}
-        <Image src="/icons/apple.svg" alt="Apple" width={16} height={16} className="invert" />
-
+        <FaApple className="invert w-4 h-4" />
         {/* App name */}
-        <span className="font-semibold">{focusedApp.charAt(0).toUpperCase() + focusedApp.slice(1)}</span>
-
-        {/* Dynamic menu items */}
+        <span className="font-semibold capitalize">{focusedApp}</span>
+        {/* Dynamic menu */}
         {getMenuItems().map((item) => (
           <span
             key={item}
@@ -57,12 +61,23 @@ export default function MenuBar() {
         ))}
       </div>
 
-      <div className="flex items-center space-x-2">
-        {/* (Optional icons) Wi-Fi, battery, spotlight */}
-        <Image src="/icons/wifi.svg" alt="WiFi" width={16} height={16} className="invert" />
-        <Image src="/icons/battery.svg" alt="Battery" width={16} height={16} className="invert" />
-        <Image src="/icons/spotlight.svg" alt="Search" width={16} height={16} className="invert" />
-        <span className="ml-2">{time}</span>
+      <div className="flex items-center space-x-3">
+        {/* Wi-Fi */}
+        <FaWifi className="invert w-4 h-4" />
+        {/* Battery */}
+        <div className="flex items-center space-x-1">
+          <CiBatteryFull className="invert w-5 h-5" />
+          <span className="text-xs">{batteryPercent}%</span>
+        </div>
+        {/* Spotlight */}
+        <button
+          onClick={() => open()}
+          className="hover:bg-white/30 rounded px-1 py-0.5 transition-colors"
+        >
+          <FaSearch className="invert w-4 h-4" />
+        </button>
+        {/* Time */}
+        <span>{time}</span>
       </div>
     </div>
   );
