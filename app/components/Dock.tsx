@@ -17,40 +17,38 @@ export default function Dock() {
   const focusedApp = windows.find((w) => w.id === focusedId)?.app;
 
   const [mouseX, setMouseX] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const dockRef = useRef<HTMLDivElement>(null);
 
-  const iconSize = 64; // Width of icon container including spacing
+  const iconSize = 64;
 
   const isOpen = (appId: string) => windows.some((w) => w.app === appId);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = dockRef.current?.getBoundingClientRect();
     if (!rect) return;
-    setMouseX(e.clientX - rect.left);
+
+    const relativeX = e.clientX - rect.left;
+    setMouseX(relativeX);
+
+    const index = Math.floor(relativeX / iconSize);
+    setHoveredIndex(index);
   };
 
   const handleMouseLeave = () => {
     setMouseX(null);
+    setHoveredIndex(null);
   };
-
-  const getHoveredIndex = (): number | null => {
-    if (mouseX === null) return null;
-    return Math.floor(mouseX / iconSize);
-  };
-
-  const hoveredIndex = getHoveredIndex();
 
   const getTransform = (index: number): string => {
     if (hoveredIndex === null) return 'scale(1) translate(0, 0)';
 
     const distance = index - hoveredIndex;
 
-    // Icon đang được hover
     if (index === hoveredIndex) {
       return 'scale(1.5) translate(0, -10px)';
     }
 
-    // Icon bên cạnh bị đẩy sang trái/phải
     const shift = 20 * Math.exp(-Math.abs(distance));
     const translateX = distance > 0 ? shift : -shift;
 
@@ -74,6 +72,21 @@ export default function Dock() {
             transform: getTransform(index),
           }}
         >
+          {/* Label */}
+          <div
+            className={clsx(
+              'absolute -top-7 px-1.5 py-0.5 text-xs text-black bg-white/80 rounded shadow-sm',
+              'flex items-center justify-center whitespace-nowrap',
+              index === hoveredIndex ? 'opacity-100' : 'opacity-0 pointer-events-none',
+              'transition-opacity duration-150'
+            )}
+          >
+            {app.name}
+            {/* Tam giác dưới label */}
+            <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-white/80 rotate-45 z-[-1]"></div>
+          </div>
+
+
           <button
             onClick={() => openWindow(app.id as any)}
             className="transition-transform duration-150"
@@ -86,6 +99,7 @@ export default function Dock() {
             />
           </button>
 
+          {/* Indicator */}
           {isOpen(app.id) && (
             <span
               className={clsx(
