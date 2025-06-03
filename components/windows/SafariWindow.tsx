@@ -7,21 +7,26 @@ export default function SafariWindow({ id, zIndex }: { id: string; zIndex: numbe
   const closeWindow = useWindowStore((s) => s.closeWindow);
   const focusWindow = useWindowStore((s) => s.focusWindow);
   return (
-    <div className="absolute top-32 left-40 w-[800px] h-[500px] bg-white rounded-md border shadow-lg z-10 flex flex-col">
-      <div className="flex items-center justify-between bg-gray-100 px-3 py-1 border-b">
-        <div className="flex space-x-2">
-          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+    <Draggable handle=".title-bar" onStart={() => focusWindow(id)}>
+      <div className="absolute top-40 left-60 w-[600px]" style={{ zIndex }}>
+        <div className="bg-black text-green-400 rounded-md border shadow-lg font-mono">
+          <div className="title-bar flex items-center justify-between bg-gray-800 px-3 py-1 border-b border-gray-700">
+            <div className="flex space-x-2">
+              <WindowControls onClose={() => closeWindow(id)} />
+            </div>
+            <span className="text-sm text-white">Safari</span>
+            <div />
+          </div>
+          <div className="p-4 text-sm">
+            <iframe
+              src="https://github.com/dangtranhuu"
+              className="flex-1 w-full border-none"
+              title="Safari"
+            ></iframe>
+          </div>
         </div>
-        <span className="text-sm">Safari</span>
-        <div />
       </div>
-      <iframe
-        src="https://example.com"
-        className="flex-1 w-full border-none"
-        title="Safari"
-      ></iframe>
-    </div>
+    </Draggable>
+
   );
 }
