@@ -8,10 +8,11 @@ export default function SafariWindow({ id, zIndex }: { id: string; zIndex: numbe
     s.windows.find((w) => w.id === id)
   );
 
-  if (windowData?.minimized) return null;
-
   const closeWindow = useWindowStore((s) => s.closeWindow);
   const focusWindow = useWindowStore((s) => s.focusWindow);
+
+  if (windowData?.minimized) return null;
+
   return (
     <Draggable handle=".title-bar" onStart={() => focusWindow(id)}>
       <div className="absolute top-40 left-60 w-[600px]" style={{ zIndex }}>
