@@ -6,7 +6,6 @@ import { useSpotlightStore } from '@/store/spotlightStore';
 import { FaWifi, FaSearch, FaApple } from 'react-icons/fa';
 import { MdBatteryChargingFull, MdBatteryFull } from 'react-icons/md';
 import { IoIosOptions } from 'react-icons/io';
-import BatteryManager from '@/types';
 import { MacIcons } from '@/components/icon/mac'
 
 
