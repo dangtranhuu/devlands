@@ -31,10 +31,21 @@ export default function DraggableWindowShell({
 
   if (windowData?.minimized) return null;
 
+  const isMaximized = className?.includes('w-full') && className?.includes('h-full');
+
   return (
     <Draggable handle=".title-bar" nodeRef={nodeRef} onStart={() => focusWindow(id)}>
-      <div ref={nodeRef} className={`absolute top-40 left-60 ${className}`} style={{ zIndex }}>
-        <div className="bg-white rounded-md border shadow-lg">
+      <div
+        ref={nodeRef}
+        className={`absolute ${className}`}
+        style={{
+          zIndex,
+          top: isMaximized ? 28 : undefined,
+          transform: isMaximized ? 'translate(0px, 0px)' : undefined,
+        }}
+
+      >
+        <div className="bg-white rounded-md border shadow-lg flex flex-col h-full">
           <div className="title-bar flex justify-between items-center bg-gray-100 border-b px-3 py-1">
             <WindowControls
               onClose={onClose}
@@ -44,7 +55,11 @@ export default function DraggableWindowShell({
             <span className="text-sm font-medium">{title}</span>
             <div />
           </div>
-          <div className="p-4">{children}</div>
+
+          {/* Nội dung */}
+          <div className={`p-4 overflow-auto ${isMaximized ? 'flex-1' : ''}`}>
+            {children}
+          </div>
         </div>
       </div>
     </Draggable>
