@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Live2DWidget } from "next-live2d";
+import Live2DWidget from "@/components/Live2dWidget";
 
 const inter = Inter({ subsets: ["latin"] });
 

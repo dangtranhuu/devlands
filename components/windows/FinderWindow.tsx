@@ -1,31 +1,26 @@
 'use client';
-import Draggable from 'react-draggable';
+
+import DraggableWindowShell from '@/components/DraggableWindowShell';
 import { useWindowStore } from '@/store/windowStore';
-import WindowControls from '@/components/WindowControls';
+import { useState } from 'react';
 
-export default function FinderWindow({ id, zIndex }: { id: string; zIndex: number }) {
-  const closeWindow = useWindowStore((s) => s.closeWindow);
-  const focusWindow = useWindowStore((s) => s.focusWindow);
-  const windowData = useWindowStore((s) =>
-    s.windows.find((w) => w.id === id)
-  );
-
-  if (windowData?.minimized) return null;
+export default function TerminalWindow({ id, zIndex }: { id: string; zIndex: number }) {
+  const { closeWindow, minimizeWindow } = useWindowStore.getState();
+  const [isMaximized, setIsMaximized] = useState(false);
 
   return (
-    <Draggable handle=".title-bar" onStart={() => focusWindow(id)}>
-      <div className="absolute top-20 left-20 w-[600px]" style={{ zIndex }}>
-        <div className="bg-white rounded-md border shadow-lg">
-          <div className="title-bar flex items-center justify-between bg-gray-100 px-3 py-1 border-b">
-            <WindowControls onClose={() => closeWindow(id)} />
-            <span className="text-sm">Finder</span>
-            <div />
-          </div>
-          <div className="p-4">
-            <p>📁 Đây là Finder đang mở.</p>
-          </div>
-        </div>
+    <DraggableWindowShell
+      id={id}
+      zIndex={zIndex}
+      title="Finder"
+      onClose={() => closeWindow(id)}
+      onMinimize={() => minimizeWindow(id)}
+      onMaximize={() => setIsMaximized((v) => !v)}
+      className={isMaximized ? 'top-0 left-0 w-full h-full' : 'w-[600px]'}
+    >
+      <div className="p-4">
+        <p>📁 Đây là Finder đang mở.</p>
       </div>
-    </Draggable>
+    </DraggableWindowShell>
   );
 }
