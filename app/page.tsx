@@ -6,6 +6,7 @@ import Spotlight from '@/components/Spotlight';
 import { useWindowStore } from '@/store/windowStore';
 import FinderWindow from '@/components/windows/FinderWindow';
 import TerminalWindow from '@/components/windows/TerminalWindow';
+import VSCodeWindow from '@/components/windows/VSCodeWindow';
 
 export default function Home() {
   const windows = useWindowStore((s) => s.windows);
@@ -22,6 +23,7 @@ export default function Home() {
       {windows.map((w) => {
         if (w.app === 'finder') return <FinderWindow key={w.id} id={w.id} zIndex={w.zIndex} />;
         if (w.app === 'terminal') return <TerminalWindow key={w.id} id={w.id} zIndex={w.zIndex} />;
+        if (w.app === 'vscode') return <VSCodeWindow key={w.id} id={w.id} zIndex={w.zIndex} />;
         return null;
       })}
 
