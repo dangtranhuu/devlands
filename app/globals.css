@@ -3,6 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  cursor: url('/macos/cursor.svg') 0 0, auto;
+  cursor: url('/macos/handpointing.svg') 0 0, pointer !important;
+  /* https://mac-cursors.netlify.app/ */
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 }
