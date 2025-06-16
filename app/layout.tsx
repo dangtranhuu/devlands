@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {children}
-        <Live2DWidget modelName="rem_2" />
+        <Live2DWidget modelName="rem_2" style={{ bottom: '0' }} />
       </body>
     </html>
   );
