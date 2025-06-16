@@ -12,7 +12,7 @@ const apps = [
   { id: 'profile', name: 'Profile', icon: '/icons/profile.png' },
   { id: 'camera', name: 'Camera', icon: '/icons/camera.png' },
   { id: 'vscode', name: 'VS Code', icon: '/icons/vscode.png' },
-  { id: 'github-desktop', name: 'Github Desktop', icon: '/icons/github-desktop.png' },
+  { id: 'github-desktop', name: 'Github', icon: '/icons/ghd.png', href: 'https://github.com/dangtranhuu' },
 ];
 
 export default function Dock() {
@@ -107,30 +107,35 @@ export default function Dock() {
 
             {/* Icon */}
             <div className="relative">
-              <button
-                onClick={() => openWindow(app.id as any)}
-                className="transition-transform duration-150"
-              >
-                <img
-                  src={app.icon}
-                  alt={app.name}
-                  className="w-[64px] h-[64px] object-contain pointer-events-none select-none"
-                  draggable={false}
-                />
-              </button>
-
-              {/* Dot: small, subtle, positioned just below icon */}
-              <span
-                className={clsx(
-                  'absolute top-full left-1/2 -translate-x-1/2 mt-[2px] w-[2px] h-[2px] rounded-full transition-opacity duration-200',
-                  isAppOpen
-                    ? isFocused
-                      ? 'bg-white opacity-100'
-                      : 'bg-neutral-500 opacity-100'
-                    : 'opacity-0'
-                )}
-              ></span>
+              {app.href ? (
+                <a
+                  href={app.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-transform duration-150 block"
+                >
+                  <img
+                    src={app.icon}
+                    alt={app.name}
+                    className="w-[64px] h-[64px] object-contain pointer-events-none select-none"
+                    draggable={false}
+                  />
+                </a>
+              ) : (
+                <button
+                  onClick={() => handleClick(app.id as WindowType)}
+                  className="transition-transform duration-150"
+                >
+                  <img
+                    src={app.icon}
+                    alt={app.name}
+                    className="w-[64px] h-[64px] object-contain pointer-events-none select-none"
+                    draggable={false}
+                  />
+                </button>
+              )}
             </div>
+
           </div>
         );
       })}
