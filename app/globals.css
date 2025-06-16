@@ -3,11 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* https://mac-cursors.netlify.app/ */
 html,
 body {
-  cursor: url('/macos/cursor.svg') 0 0, auto;
-  cursor: url('/macos/handpointing.svg') 0 0, pointer !important;
-  /* https://mac-cursors.netlify.app/ */
+  cursor: url('/macos/cursor.svg') 0 0, default;
+}
+
+a,
+button,
+[role="button"],
+.clickable {
+  cursor: url('/macos/handpointing.svg') 0 0, pointer;
 }
 
 body {
