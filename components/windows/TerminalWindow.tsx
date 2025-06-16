@@ -16,7 +16,7 @@ export default function TerminalWindow({ id, zIndex }: { id: string; zIndex: num
       onMaximize={() => setIsMaximized((v) => !v)}
       className={isMaximized ? 'top-0 left-0 w-full h-full' : 'w-[600px]'}
     >
-      <div className="text-green-400 font-mono text-sm">
+      <div className="text-green-400 font-mono text-sm px-4 h-[30%]">
         <p>Last login: Mon Jun 2 11:00:00 on ttys000</p>
         <p>$ echo &ldquo;Hello macOS UI&ldquo;</p>
         <p>Hello macOS UI</p>

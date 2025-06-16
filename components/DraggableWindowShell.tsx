@@ -58,7 +58,7 @@ export default function DraggableWindowShell({
           </div>
 
           {/* Nội dung */}
-          <div className={`p-4 overflow-auto ${isMaximized ? 'flex-1' : ''}`}>
+          <div className={`overflow-auto h-[100%] ${isMaximized ? 'flex-1' : ''}`}>
             {children}
           </div>
         </div>
