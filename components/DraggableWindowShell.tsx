@@ -40,7 +40,8 @@ export default function DraggableWindowShell({
         className={`absolute ${className}`}
         style={{
           zIndex,
-          top: isMaximized ? 28 : undefined,
+          top: isMaximized ? 28 : 'calc(50vh - 200px)',   // 400 / 2
+          left: isMaximized ? 0 : 'calc(50vw - 300px)',    // 600 / 2
           transform: isMaximized ? 'translate(0px, 0px)' : undefined,
         }}
 
