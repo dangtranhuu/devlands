@@ -102,7 +102,7 @@ export default function Dock() {
               )}
             >
               {app.name}
-              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-white/80 rotate-45 z-[-1]" />
+              {/* <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-white/80 rotate-45 z-[-1]" /> */}
             </div>
 
             {/* Icon */}
