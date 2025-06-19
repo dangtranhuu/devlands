@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, useMotionValue } from 'framer-motion';
+import { motion, useMotionValue, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
 import { useDockHoverAnimation } from '@/hooks/useDockHoverAnimation';
 import type { AppItem } from './Dock';
@@ -9,7 +9,7 @@ import clsx from 'clsx';
 
 interface Props {
   app: AppItem;
-  mouseX: ReturnType<typeof useMotionValue>;
+  mouseX: MotionValue<number | null>;
   openApp: (id: string) => void;
   isOpen: boolean;
   dockSize: number;
