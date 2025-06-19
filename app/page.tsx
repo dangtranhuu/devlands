@@ -1,7 +1,7 @@
 'use client';
 
 import MenuBar from '@/components/MenuBar';
-import Dock from '@/components/Dock';
+import Dock from '@/components/dock/Dock';
 import Spotlight from '@/components/Spotlight';
 import { useWindowStore } from '@/store/windowStore';
 import FinderWindow from '@/components/windows/FinderWindow';

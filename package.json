@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
+    "@rooks/use-raf": "^4.11.2",
+    "framer-motion": "^12.18.1",
     "monaco-editor": "^0.52.2",
     "monaco-themes": "^0.4.5",
     "next": "^15",
