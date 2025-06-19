@@ -4,11 +4,21 @@ import { useWindowStore } from '@/store/windowStore';
 import clsx from 'clsx';
 import { useRef, useState } from 'react';
 import type { WindowType } from '@/store/windowStore';
+import CalendarIcon from './icon/calendar';
 
-const apps = [
+type AppItem = {
+  id: string;
+  name: string;
+  icon?: string;
+  iconComponent?: React.ReactNode;
+  href?: string;
+};
+
+const apps: AppItem[] = [
   { id: 'finder', name: 'Finder', icon: '/icons/finder.png' },
   { id: 'terminal', name: 'Terminal', icon: '/icons/terminal.png' },
   { id: 'safari', name: 'Safari', icon: '/icons/safari.png' },
+  { id: 'calendar', name: 'Calendar', iconComponent: <CalendarIcon /> },
   { id: 'profile', name: 'Profile', icon: '/icons/profile.png' },
   { id: 'camera', name: 'Camera', icon: '/icons/camera.png' },
   { id: 'vscode', name: 'VS Code', icon: '/icons/vscode.png' },
@@ -114,24 +124,37 @@ export default function Dock() {
                   rel="noopener noreferrer"
                   className="transition-transform duration-150 block"
                 >
-                  <img
-                    src={app.icon}
-                    alt={app.name}
-                    className="w-[64px] h-[64px] object-contain pointer-events-none select-none"
-                    draggable={false}
-                  />
+                  {app.iconComponent ? (
+                    <div className="w-[64px] h-[64px] flex items-center justify-center">
+                      {app.iconComponent}
+                    </div>
+                  ) : (
+                    <img
+                      src={app.icon}
+                      alt={app.name}
+                      className="w-[64px] h-[64px] object-contain pointer-events-none select-none"
+                      draggable={false}
+                    />
+                  )}
+
                 </a>
               ) : (
                 <button
                   onClick={() => handleClick(app.id as WindowType)}
                   className="transition-transform duration-150"
                 >
-                  <img
-                    src={app.icon}
-                    alt={app.name}
-                    className="w-[64px] h-[64px] object-contain pointer-events-none select-none"
-                    draggable={false}
-                  />
+                  {app.iconComponent ? (
+                    <div className="w-[64px] h-[64px] flex items-center justify-center">
+                      {app.iconComponent}
+                    </div>
+                  ) : (
+                    <img
+                      src={app.icon}
+                      alt={app.name}
+                      className="w-[64px] h-[64px] object-contain pointer-events-none select-none"
+                      draggable={false}
+                    />
+                  )}
                 </button>
               )}
             </div>
