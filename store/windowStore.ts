@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type WindowType = 'finder' | 'terminal' | 'safari' | 'profile' | 'camera' | 'vscode' | 'github-desktop';
+export type WindowType = 'finder' | 'terminal' | 'safari' | 'profile' | 'camera' | 'vscode' | 'github-desktop' | 'calendar';
 
 type Window = {
   id: string;
