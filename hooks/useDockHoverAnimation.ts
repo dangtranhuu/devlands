@@ -14,30 +14,31 @@ export const useDockHoverAnimation = (
 ) => {
   const distanceLimit = dockSize * 6;
 
+  // Tạo vùng hover logic giống macOS
   const input = [
     -distanceLimit,
-    -distanceLimit / (dockMag * 0.65),
-    -distanceLimit / (dockMag * 0.85),
+    -dockSize * 2.5,
+    -dockSize * 1.2,
     0,
-    distanceLimit / (dockMag * 0.85),
-    distanceLimit / (dockMag * 0.65),
+    dockSize * 1.2,
+    dockSize * 2.5,
     distanceLimit
   ];
 
   const output = [
     dockSize,
-    dockSize * (dockMag * 0.55),
-    dockSize * (dockMag * 0.75),
+    dockSize * 1.2,
+    dockSize * 1.5,
     dockSize * dockMag,
-    dockSize * (dockMag * 0.75),
-    dockSize * (dockMag * 0.55),
+    dockSize * 1.5,
+    dockSize * 1.2,
     dockSize
   ];
 
   const distance = useMotionValue(distanceLimit + 1);
   const widthPX = useSpring(useTransform(distance, input, output), {
-    stiffness: 1600,
-    damping: 85
+    stiffness: 1400,
+    damping: 90
   });
 
   const width = useTransform(widthPX, (w) => `${w}px`);

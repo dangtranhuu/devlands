@@ -1,8 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion, useMotionValue, MotionValue } from 'framer-motion';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
+import { motion, type MotionValue } from 'framer-motion';
 import { useDockHoverAnimation } from '@/hooks/useDockHoverAnimation';
 import type { AppItem } from './Dock';
 import clsx from 'clsx';
@@ -35,35 +34,37 @@ export default function DockItem({
         {app.name}
       </p>
 
-      <div ref={ref} className="flex items-center justify-center aspect-square w-full">
+      <div ref={ref} className="flex items-end justify-center aspect-square w-full">
         {app.href ? (
           <a href={app.href} target="_blank" rel="noopener noreferrer">
             <motion.img
               src={app.icon}
               alt={app.name}
               draggable={false}
-              className="object-contain aspect-square max-w-full max-h-full rounded-[20%] drop-shadow-md"
+              className="object-contain aspect-square max-w-full max-h-full rounded-[20%] drop-shadow-md
+                         transition-transform duration-200 group-hover:translate-y-0 translate-y-2"
               style={{ width, willChange: 'width' }}
             />
           </a>
         ) : (
           <motion.button onClick={() => openApp(app.id)} style={{ width }}>
-
             {app.iconComponent ? (
               <motion.div
                 ref={ref}
                 style={{ width }}
-                className="aspect-square flex items-center justify-center"
+                className="aspect-square flex items-end justify-center
+                           transition-transform duration-200 group-hover:translate-y-0 translate-y-2"
               >
                 {React.cloneElement(app.iconComponent as React.ReactElement, {
-                  width: '100%' // 👈 Quan trọng: nhận width đầy đủ
+                  width: '100%'
                 })}
               </motion.div>
             ) : (
               <motion.div
                 ref={ref}
                 style={{ width }}
-                className="aspect-square flex items-center justify-center"
+                className="aspect-square flex items-end justify-center
+                           transition-transform duration-200 group-hover:translate-y-0 translate-y-2"
               >
                 <img
                   src={app.icon}
@@ -73,12 +74,9 @@ export default function DockItem({
                 />
               </motion.div>
             )}
-
-
           </motion.button>
         )}
       </div>
-
 
       {/* Dot indicator */}
       <div
@@ -87,7 +85,6 @@ export default function DockItem({
           isOpen ? 'opacity-100' : 'opacity-0'
         )}
       />
-
     </li>
   );
 }

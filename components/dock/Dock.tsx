@@ -32,7 +32,7 @@ const apps: AppItem[] = [
 export default function Dock() {
   const mouseX = useMotionValue<number | null>(null);
 
-  const dockSize = 55; // 👈 Chuẩn size macOS
+  const dockSize = 55;
   const dockMag = 1.8;
 
   const openWindow = useWindowStore((s) => s.openWindow);
@@ -56,7 +56,7 @@ export default function Dock() {
       onMouseLeave={() => mouseX.set(null)}
       className="fixed bottom-4 left-1/2 -translate-x-1/2 flex px-4 py-2 space-x-4
                  bg-black/30 backdrop-blur-md border border-white/10
-                 rounded-2xl shadow-2xl z-50"
+                 rounded-2xl shadow-2xl z-50 h-[70px] items-end overflow-visible"
     >
       {apps.map((app) => (
         <DockItem
